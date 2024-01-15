@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,5 +30,23 @@ public class UserController {
         }
         return null;
     }
+    @GetMapping("/userByName")
+    public User getUserByName(@RequestParam String name){
+        Optional user = userService.getUserByName(name);
+        if (user.isPresent()){
+            return (User) user.get();
+        }
+        return null;
+    }
+
+    @GetMapping("/users")
+    public List<User> getUsers(){
+        List users = userService.getUsers();
+        if (!users.isEmpty()){
+            return users;
+        }
+        return null;
+    }
+
 
 }

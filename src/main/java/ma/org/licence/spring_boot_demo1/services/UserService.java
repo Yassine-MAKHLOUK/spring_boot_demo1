@@ -3,10 +3,7 @@ package ma.org.licence.spring_boot_demo1.services;
 import ma.org.licence.spring_boot_demo1.api.model.User;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -34,5 +31,24 @@ public class UserService {
 
         }
         return optional;
+    }
+
+    public Optional getUserByName(String name) {
+        Optional optional = Optional.empty();
+        for (User user:userList ){
+            if (Objects.equals(name, user.getName())) {
+                optional = Optional.of(user);
+
+                return optional;
+            }
+
+        }
+        return optional;
+    }
+
+    public List<User> getUsers() {
+        List<User> usersList = userList;
+        return usersList;
+
     }
 }
